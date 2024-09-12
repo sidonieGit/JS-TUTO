@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Javascript Mastering</title>
 
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="click-event box">
-      <h4>Quelle est la capitale de la suisse</h4>
-      <button id="btn-1">Berne</button>
-      <button id="btn-2">Zurick</button>
-      <p>La bonne réponse est Berne</p>
-    </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Javascript Mastering</title>
 
-    <div class="mousemove"></div>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/index.js" defer></script>
+</head>
 
-    <div class="keypress box">
-      <h2>Vous appuyez sur la touche : <span id="key"></span></h2>
-    </div>
+<body>
+  <div class="click-event box">
+    <h4>Quelle est la capitale de la suisse</h4>
+    <button id="btn-1">Berne</button>
+    <button id="btn-2">Zurick</button>
+    <p>La bonne réponse est Berne</p>
+  </div>
 
-    <nav>
-      <ul>
-        <li>Accueil</li>
-        <li>Services</li>
-        <li>Contact</li>
-      </ul>
-    </nav>
+  <div class="mousemove"></div>
 
-    <form action="" class="box">
-      <input type="text" placeholder="Entrez votre nom" />
-      <select id="selectLanguage">
-        <option value="">Selectionner votre language</option>
-        <option value="Javascript">Javascript</option>
-        <option value="PHP">PHP</option>
-        <option value="Python">Python</option>
-      </select>
+  <div class="keypress box">
+    <h2>Vous appuyez sur la touche : <span id="key"></span></h2>
+  </div>
 
-      <input type="checkbox" id="cgv" />
-      <label for="cgv">Accepter les CGV</label>
-      <input type="submit" value="valider" />
-      <div></div>
-    </form>
+  <nav>
+    <ul>
+      <li>Accueil</li>
+      <li><a href="animate1.html">Javascript animation API</a></li>
+      <li>Contact</li>
+    </ul>
+  </nav>
 
-    <script src="index.js"></script>
-  </body>
+  <form action="" class="box">
+    <input type="text" placeholder="Entrez votre nom" />
+    <select id="selectLanguage">
+      <option value="">Selectionner votre language</option>
+      <option value="Javascript">Javascript</option>
+      <option value="PHP">PHP</option>
+      <option value="Python">Python</option>
+    </select>
+
+    <input type="checkbox" id="cgv" />
+    <label for="cgv">Accepter les CGV</label>
+    <input type="submit" value="valider" />
+    <div></div>
+  </form>
+</body>
+
 </html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Animation de Bouton</title>
+	<style>
+		#animatedButton {
+			padding: 10px 20px;
+			font-size: 16px;
+			cursor: pointer;
+			transition: transform 0.2s, background-color 0.2s;
+		}
+
+		.hover {
+			background-color: lightblue;
+		}
+
+		.clicked {
+			transform: scale(1.2);
+		}
+
+		.dblclicked {
+			transform: rotate(360deg);
+		}
+
+		.mouseup {
+			background-color: lightgreen;
+		}
+
+		.mouseout {
+			background-color: lightcoral;
+		}
+	</style>
+</head>
+
+<body>
+	<button id="animatedButton">Cliquez-moi !</button>
+
+	<script>
+		const button = document.getElementById('animatedButton');
+
+		button.addEventListener('click', () => {
+			button.classList.add('clicked');
+			setTimeout(() => button.classList.remove('clicked'), 200);
+		});
+
+		button.addEventListener('dblclick', () => {
+			button.classList.add('dblclicked');
+			setTimeout(() => button.classList.remove('dblclicked'), 1000);
+		});
+
+		button.addEventListener('mouseover', () => {
+			button.classList.add('hover');
+		});
+
+		button.addEventListener('mouseout', () => {
+			button.classList.remove('hover');
+			button.classList.add('mouseout');
+			setTimeout(() => button.classList.remove('mouseout'), 200);
+		});
+
+		button.addEventListener('mouseup', () => {
+			button.classList.add('mouseup');
+			setTimeout(() => button.classList.remove('mouseup'), 200);
+		});
+
+		button.addEventListener('mousemove', () => {
+			button.style.transform = `translate(${Math.random() * 10}px, ${Math.random() * 10}px)`;
+		});
+	</script>
+</body>
+
+</html>
