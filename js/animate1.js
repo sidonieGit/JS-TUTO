@@ -1,15 +1,16 @@
 // Tableau de couleurs à utiliser pour l'animation
 let colors = ["green", "yellow", "red", "black", "light"];
-let j = 0;
-let ref; // Référence pour l'intervalle
+let j = 0; // Index pour suivre la couleur actuelle
+let ref; // Référence pour l'intervalle d'animation
 let isDragging = false; // État pour déterminer si l'élément est en train d'être déplacé
 let offsetX, offsetY; // Décalages pour le déplacement de l'élément
+let mouseOver = false; // Variable pour suivre l'état de survol de la souris
 
 // Fonction qui gère l'animation lors d'un double clic
 function gestionnaireAnimate() {
-  let card = document.getElementById("card");
+  let card = document.getElementById("card"); // Récupère l'élément à animer
   let position = 0; // Position initiale pour l'animation
-  card.innerHTML = "Vous venez de faire un double clic";
+  card.innerHTML = "Vous venez de faire un double clic"; // Affiche un message sur l'élément
 
   // Fonction d'animation
   function animate() {
@@ -20,8 +21,8 @@ function gestionnaireAnimate() {
       requestAnimationFrame(animate); // Appelle la fonction d'animation à chaque frame
 
       // Si la souris est au-dessus de l'élément, arrête l'animation
-      if (onMouseOver) {
-        stop();
+      if (mouseOver) {
+        stop(); // Arrête l'animation
         card.style.transform = "none"; // Réinitialise la transformation
         card.style.borderRadius = "none"; // Réinitialise le border-radius
       }
@@ -33,7 +34,7 @@ function gestionnaireAnimate() {
 
 // Fonction pour changer les propriétés de l'élément
 function picLibrary() {
-  let card = document.getElementById("card");
+  let card = document.getElementById("card"); // Récupère l'élément à styliser
   card.style.marginTop = "100px"; // Position verticale
   card.style.height = "300px"; // Hauteur de l'élément
   card.style.width = "400px"; // Largeur de l'élément
@@ -42,8 +43,8 @@ function picLibrary() {
   card.style.background = colors[j]; // Change la couleur de fond en fonction de l'index j
 
   // Si la souris est au-dessus de l'élément, arrête l'animation
-  if (onMouseOver) {
-    stop();
+  if (mouseOver) {
+    stop(); // Arrête l'animation
   }
 
   card.style.position = "relative"; // Nécessaire pour utiliser 'left' et 'top'
@@ -55,7 +56,7 @@ function picLibrary() {
 
 // Fonction pour styliser l'élément avec des coins arrondis
 function picLibraryRounded() {
-  let card = document.getElementById("card");
+  let card = document.getElementById("card"); // Récupère l'élément à styliser
   card.style.marginTop = "100px"; // Position verticale
   card.style.height = "300px"; // Hauteur de l'élément
   card.style.width = "400px"; // Largeur de l'élément
@@ -64,8 +65,8 @@ function picLibraryRounded() {
   card.style.background = colors[j]; // Change la couleur de fond
 
   // Si la souris est au-dessus de l'élément, arrête l'animation
-  if (onMouseOver) {
-    stop();
+  if (mouseOver) {
+    stop(); // Arrête l'animation
   }
 
   card.style.position = "relative"; // Nécessaire pour utiliser 'left' et 'top'
@@ -82,17 +83,19 @@ function start() {
 
 // Fonction pour démarrer l'animation avec picLibraryRounded
 function startClick() {
+  let card = document.getElementById("card"); // Récupère l'élément
   ref = setInterval(picLibraryRounded, 200); // Démarre un intervalle qui appelle picLibraryRounded
   card.innerHTML = "Bravo, vous venez de faire un clic"; // Affiche un message
 }
 
 // Fonction pour arrêter l'animation
 function stop() {
-  clearInterval(ref); // Arrête l'intervalle
+  clearInterval(ref); // Arrête l'intervalle d'animation
 }
 
 // Fonction pour gérer l'événement de survol
 function onMouseOver() {
+  mouseOver = true; // Met à jour l'état lorsque la souris est au-dessus
   let card = document.getElementById("card");
   card.innerHTML = "Survole"; // Change le texte affiché
   card.style.transform = "none"; // Réinitialise la transformation
@@ -102,6 +105,7 @@ function onMouseOver() {
 
 // Fonction pour gérer l'événement de sortie de la souris
 function onMouseOut() {
+  mouseOver = false; // Met à jour l'état lorsque la souris sort
   let card = document.getElementById("card");
   card.innerHTML =
     "Merci de passer au prochain événement <br> Maintenez la souris et déplacez l'élément"; // Affiche un message
@@ -119,7 +123,7 @@ function onMouseDown(e) {
 function onMouseMove(e) {
   if (isDragging) {
     // Si l'élément est en cours de déplacement
-    let card = document.getElementById("card");
+    let card = document.getElementById("card"); // Récupère l'élément
     card.style.left = e.clientX - offsetX + "px"; // Met à jour la position horizontale
     card.style.top = e.clientY - offsetY + "px"; // Met à jour la position verticale
   }
@@ -131,15 +135,15 @@ function onMouseUp() {
 }
 
 // Ajout des écouteurs d'événements
-const cardElement = document.getElementById("card");
+const cardElement = document.getElementById("card"); // Récupère l'élément
 if (cardElement) {
-  cardElement.addEventListener("mouseover", onMouseOver); // Événement de survol
-  cardElement.addEventListener("mouseout", onMouseOut); // Événement de sortie
-  cardElement.addEventListener("mousedown", onMouseDown); // Événement de début de déplacement
-  document.addEventListener("mousemove", onMouseMove); // Événement de déplacement de la souris
-  document.addEventListener("mouseup", onMouseUp); // Événement de fin de déplacement
-  document.addEventListener("click", startClick); // Événement de clic
-  document.addEventListener("dblclick", gestionnaireAnimate); // Événement de double clic
+  cardElement.addEventListener("mouseover", onMouseOver);
+  cardElement.addEventListener("mouseout", onMouseOut);
+  cardElement.addEventListener("mousedown", onMouseDown);
+  document.addEventListener("mousemove", onMouseMove);
+  document.addEventListener("mouseup", onMouseUp);
+  document.addEventListener("click", startClick);
+  document.addEventListener("dblclick", gestionnaireAnimate);
 }
 
 // Démarre l'animation au chargement de la page
