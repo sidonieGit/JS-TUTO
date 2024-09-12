@@ -18,7 +18,7 @@ body {
 } */
 
 nav {
-  margin-bottom: 100px;
+  margin-bottom: 1000px;
   background: pink;
   position: fixed;
   width: 100%;
@@ -42,4 +42,8 @@ ul {
   align-items: center;
   justify-content: space-around;
   padding: 0;
+}
+
+p {
+  margin-left: 100px;
 }
